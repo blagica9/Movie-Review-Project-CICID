@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Movie{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Add New Movie</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.title.label_tag }} {{ form.title }}
+    </div>
+    <div class="form-group">
+        {{ form.genre.label_tag }} {{ form.genre }}
+    </div>
+    <div class="form-group">
+        {{ form.release_year.label_tag }} {{ form.release_year }}
+    </div>
+    <button type="submit" class="btn btn-success">Add Movie</button>
+</form>
+<a href="{% url 'movie_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}

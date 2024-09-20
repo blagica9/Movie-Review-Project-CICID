@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+<h1 class="my-4">{{ movie.title }}</h1>
+<p><strong>Genre:</strong> {{ movie.genre }}</p>
+<p><strong>Release Year:</strong> {{ movie.release_year }}</p>
+
+<hr>
+
+<h2>Reviews</h2>
+{% if reviews %}
+    <ul class="list-group mb-4">
+        {% for review in reviews %}
+        <li class="list-group-item">
+            <p><strong>User:</strong> {{ review.user }}</p>
+            <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
+            <p><strong>Comment:</strong> {{ review.comment }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reviews yet for this movie.</p>
+{% endif %}
+
+<hr>
+
+<h2>Leave a Review</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.user.label_tag }} {{ form.user }}
+    </div>
+    <div class="form-group">
+        {{ form.rating.label_tag }} {{ form.rating }}
+    </div>
+    <div class="form-group">
+        {{ form.comment.label_tag }} {{ form.comment }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+<a href="{% url 'movie_list' %}" class="btn btn-secondary mt-3">Back to List</a>
+{% endblock %}

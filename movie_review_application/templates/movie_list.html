@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Movie List{% endblock %}
+
+{% block content %}
+<h1 class="my-4">Movie List</h1>
+<a href="{% url 'add_movie' %}" class="btn btn-primary mb-4">Add New Movie</a>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Release Year</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.genre }}</td>
+            <td>{{ movie.release_year }}</td>
+            <td>
+                <a href="{% url 'movie_detail' movie.pk %}" class="btn btn-info btn-sm">View Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
