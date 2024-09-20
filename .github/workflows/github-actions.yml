@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('movie_review_application/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -32,6 +32,7 @@ jobs:
           pip install -r movie_review_application/requirements.txt
 
       - name: Run tests
+        working-directory: movie_review_application
         run: |
           python manage.py test
 
