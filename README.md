@@ -6,9 +6,9 @@ To initialize the project using Docker, follow these steps:
 
 Create a .env file in the root directory with the following environment variables:
 
-POSTGRES_USERNAME=database username
-POSTGRES_DATABASE=database name
-POSTGRES_PASSWORD=database password
+POSTGRES_USERNAME=postgres
+POSTGRES_DATABASE=my_database
+POSTGRES_PASSWORD=my_database
 Start the Docker containers:
 
 docker-compose up
