@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: movie-review-namespace
+data:
+  POSTGRES_DB: my_database

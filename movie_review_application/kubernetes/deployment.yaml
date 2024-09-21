@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movie-review-deployment
+  namespace: movie-review-namespace
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: movie-review
+  template:
+    metadata:
+      labels:
+        app: movie-review
+    spec:
+      containers:
+        - name: movie-review
+          image: blagica999/movie_review_application:latest
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@postgres-service.movie-review-namespace.svc.cluster.local:5432/$(POSTGRES_DB)"
+          envFrom:
+            - configMapRef:
+                name: movie-review-config
+            - secretRef:
+                name: postgres-secret

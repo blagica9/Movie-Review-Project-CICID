@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: movie-review-namespace
+spec:
+  ports:
+    - port: 5432
+      name: postgres
+      protocol: TCP
+  selector:
+    app: postgres
