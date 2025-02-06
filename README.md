@@ -1,4 +1,4 @@
-Book Project
+Movie Review Project
 This is a Django web application used for Dockerization and orchestration.
 
 Docker
